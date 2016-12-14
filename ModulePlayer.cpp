@@ -136,7 +136,8 @@ update_status ModulePlayer::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
-		brake = BRAKE_POWER;
+		acceleration = -MAX_ACCELERATION;
+		//brake = BRAKE_POWER;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
@@ -145,7 +146,6 @@ update_status ModulePlayer::Update(float dt)
 
 	//App->camera->Position.x = App->player->vehicle->GetChassisWorldTransform
 
-	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

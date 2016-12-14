@@ -16,10 +16,16 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
+	
+	
 
-	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
-	App->camera->LookAt(vec3(0, 0, 0));
 
+
+	b.SetPos(0, 1, 0);
+	b.color = Red;
+	b.size = 2;
+	hi = App->physics->AddBody(b,0);
+	hi->GetBody();
 	return ret;
 }
 
@@ -37,6 +43,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
+
+
+	b.Render();
+
+	hi->GetTransform(b.transform.M);
 
 	return UPDATE_CONTINUE;
 }
