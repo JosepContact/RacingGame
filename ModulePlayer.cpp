@@ -99,7 +99,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(0,20, -200);
 	
 	return true;
 }
@@ -120,18 +120,6 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
@@ -157,12 +145,19 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
-	
+	/*
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
 	vec3 pos(hello.getX() - 10 * vehicle->vehicle->getForwardVector().getX(), hello.getY() + 10 , hello.getZ() - 10 * vehicle->vehicle->getForwardVector().getZ());
 	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * vehicle->vehicle->getForwardVector().getX();
 	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * vehicle->vehicle->getForwardVector().getZ();
 	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * vehicle->vehicle->getForwardVector().getY();
+	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));*/
+
+	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
+	vec3 pos(hello.getX() - 35 * vehicle->vehicle->getForwardVector().getZ(), hello.getY() + 6 , hello.getZ() + 1 * vehicle->vehicle->getForwardVector().getZ());
+	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 1;
+	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 1;
+	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10;
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));
 	App->camera->Position = pos;
 
