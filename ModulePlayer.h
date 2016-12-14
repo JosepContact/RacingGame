@@ -22,6 +22,8 @@ public:
 
 public:
 
+	PhysBody3D* MotoJoint;
+
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
