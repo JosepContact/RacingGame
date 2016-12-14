@@ -25,7 +25,7 @@ bool ModulePlayer::Start()
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(1, 1, 3);
 	car.chassis_offset.Set(0, 1.5, 0);
-	car.mass = 500.0f;
+	car.mass = 100.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
@@ -36,7 +36,7 @@ bool ModulePlayer::Start()
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
 	float wheel_radius = 0.6f;
-	float wheel_width = 1.0f;
+	float wheel_width = 0.4f;
 	float suspensionRestLength = 1.2f;
 
 	// Don't change anything below this line ------------------
@@ -95,6 +95,8 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 
+	btVector3 vehicle_pos = vehicle->vehicle->getChassisWorldTransform().getOrigin();
+
 	turn = acceleration = brake = 0.0f;
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -110,6 +112,16 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
 		vehicle->Push(0.0f, 300.0f, 0.0f);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
+		if (vehicle->GetBody()->getAngularVelocity().getX() > -4)
+		vehicle->GetBody()->applyForce(btVector3(0, -15, 0), btVector3(vehicle_pos.getX(), vehicle_pos.getY(), vehicle_pos.getZ() + 10));
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
+		if (vehicle->GetBody()->getAngularVelocity().getX() < 4)
+			vehicle->GetBody()->applyForce(btVector3(0, 15, 0), btVector3(vehicle_pos.getX(), vehicle_pos.getY(), vehicle_pos.getZ() - 10));
 	}
 
 	//App->camera->Position.x = App->player->vehicle->GetChassisWorldTransform
@@ -134,9 +146,9 @@ update_status ModulePlayer::Update(float dt)
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));*/
 
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
-	vec3 pos(hello.getX() - 35 * vehicle->vehicle->getForwardVector().getZ(), hello.getY() + 6 , hello.getZ() -6 * vehicle->vehicle->getForwardVector().getZ());
+	vec3 pos(hello.getX() - 40, hello.getY() + 8 , hello.getZ() - 6 * vehicle->vehicle->getForwardVector().getZ());
 	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 1;
-	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10;
+	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15;
 	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10;
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));
 	App->camera->Position = pos;
