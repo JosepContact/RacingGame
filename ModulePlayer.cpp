@@ -143,8 +143,8 @@ update_status ModulePlayer::Update(float dt)
 
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
 	vec3 pos(vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 40, hello.getY() + 6 , hello.getZ() -6 * vehicle->vehicle->getForwardVector().getZ());
-	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 1;
-	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10;
+	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX();
+	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15;
 	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10;
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));
 	App->camera->Position = pos;

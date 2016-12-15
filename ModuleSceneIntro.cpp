@@ -18,8 +18,6 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-
-
 	for (uint c = 0; c < 50; ++c) {
 		Cube cube;
 		cube.color = { 0.50f ,0.23f,0 };
@@ -43,17 +41,35 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[3].SetPos(0, 12, - 155);
 	c_obstacles[3].color = Green;
 
-	c_obstacles[4].size = 12;
+	c_obstacles[4].size = 7;
 	c_obstacles[4].SetPos(0, 14, -145);
-	c_obstacles[4].color = Green;
+	c_obstacles[4].color = {0.63f, 0, 0.33f};
 	c_obstacles[4].SetRotation(30.0f, vec3(1,0,0));
 
-	for (uint c = 0; c < 50; ++c) {
+	c_obstacles[5].size = 5;
+	c_obstacles[5].SetPos(0, 14, -135);
+	c_obstacles[5].color = Green;
+	c_obstacles[5].SetRotation(40.0f, vec3(1, 1, 0));
+
+	c_obstacles[6].size = 7;
+	c_obstacles[6].SetPos(0, 10, -123);
+	c_obstacles[6].color = Blue;
+
+	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
 		body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
 	}
-	
+
+	PhysBody3D* sens;
+	Cube p(5, 1, 1000);
+	p.SetPos(0, 8, 0);
+
+	sens = App->physics->AddBody(p, 0);
+
+	sens->SetAsSensor(true);
+	sens->collision_listeners.add(this);
+
 
 
 	return ret;
@@ -70,6 +86,7 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
