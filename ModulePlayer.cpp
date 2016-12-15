@@ -58,7 +58,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].radius = wheel_radius;
 	car.wheels[0].width = wheel_width;
 	car.wheels[0].front = true;
-	car.wheels[0].drive = false;
+	car.wheels[0].drive = true;
 	car.wheels[0].brake = false;
 	car.wheels[0].steering = true;
 
@@ -109,10 +109,18 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
-		vehicle->Push(0.0f, 300.0f, 0.0f);
+		brake = BRAKE_POWER;
 	}
-
-	//App->camera->Position.x = App->player->vehicle->GetChassisWorldTransform
+	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	{
+		if(vehicle->GetBody()->getAngularVelocity().getX() < 4)
+		vehicle->vehicle->getRigidBody()->applyImpulse({ 0, 1.5, 0 }, vehicle->vehicle->getChassisWorldTransform().getOrigin());
+	}
+	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
+		if (vehicle->GetBody()->getAngularVelocity().getX() > -4)
+		vehicle->vehicle->getRigidBody()->applyImpulse({ 0, -1.5, 0 }, vehicle->vehicle->getChassisWorldTransform().getOrigin());
+	}
 
 
 	vehicle->ApplyEngineForce(acceleration);
@@ -134,7 +142,7 @@ update_status ModulePlayer::Update(float dt)
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));*/
 
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
-	vec3 pos(hello.getX() - 35 * vehicle->vehicle->getForwardVector().getZ(), hello.getY() + 6 , hello.getZ() -6 * vehicle->vehicle->getForwardVector().getZ());
+	vec3 pos(vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 40, hello.getY() + 6 , hello.getZ() -6 * vehicle->vehicle->getForwardVector().getZ());
 	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 1;
 	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10;
 	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10;
