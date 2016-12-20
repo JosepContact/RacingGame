@@ -17,8 +17,11 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
+	ondeath.x = 0;
+	ondeath.y = 15;
+	ondeath.z = -200;
 
-	for (uint c = 0; c < 50; ++c) {
+	for (uint c = 0; c < NCUBES; ++c) {
 		Cube cube;
 		cube.color = { 0.50f ,0.23f,0 };
 		cube.size = 2;
@@ -55,21 +58,30 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[6].SetPos(0, 10, -123);
 	c_obstacles[6].color = Blue;
 
+	c_obstacles[7].size = 20;
+	c_obstacles[7].SetPos(0, 15, -218);
+	c_obstacles[7].color = Red;
+
+
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
 		body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
 	}
 
-	PhysBody3D* sens;
+	
 	Cube p(5, 1, 1000);
 	p.SetPos(0, 8, 0);
 
-	sens = App->physics->AddBody(p, 0);
+	sensor_fail = App->physics->AddBody(p, 0);
+	sensor_fail->SetAsSensor(true);
+	sensor_fail->collision_listeners.add(this);
 
-	sens->SetAsSensor(true);
-	sens->collision_listeners.add(this);
-
+	Cube check1(3, 10, 0.1);
+	check1.SetPos(0, 15, -123);
+	checkpoints[0] = App->physics->AddBody(check1, 0);
+	checkpoints[0]->SetAsSensor(true);
+	checkpoints[0]->collision_listeners.add(this);
 
 
 	return ret;
@@ -92,9 +104,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.Render();
 
 
-	b.Render();
-
-	for (uint c = 0; c < 50; ++c) {
+	for (uint c = 0; c < NCUBES; ++c) {
 		obstacles[c]->GetTransform(c_obstacles[c].transform.M);
 		c_obstacles[c].Render();
 	}
@@ -102,7 +112,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
+void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 {
+	if (body1 == sensor_fail && body2 == App->player->vehiclepoint) {
+		App->player->vehiclepoint->SetPos(ondeath.x, ondeath.y, ondeath.z);
+		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
+		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
+	}
+	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
+		ondeath.y = 15;
+		ondeath.z = -123;
+	}
 }
-

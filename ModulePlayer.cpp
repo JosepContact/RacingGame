@@ -75,11 +75,12 @@ bool ModulePlayer::Start()
 	car.wheels[1].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0,20, -200);
+	vehicle->SetPos(0,15, -200);
 
 	vehicle->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 	vehicle->GetBody()->setAngularFactor(btVector3(1, 0, 0));
 
+	vehiclepoint = vehicle;
 	return true;
 }
 
@@ -152,6 +153,4 @@ update_status ModulePlayer::Update(float dt)
 
 	return UPDATE_CONTINUE;
 }
-
-
 
