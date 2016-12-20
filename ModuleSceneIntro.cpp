@@ -62,14 +62,22 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[7].SetPos(0, 15, -218);
 	c_obstacles[7].color = Red;
 
+	c_obstacles[8].size = 10;
+	c_obstacles[8].SetPos(0, 10, -110);
+	c_obstacles[8].color = { .63f, 0, .33f };
+
+	block.body = App->physics->AddBody(c_obstacles[8], 0);
+	block.LSpeed = { 0, 0.1f, 0 };
+	block.id = 8;
 
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
-		body = App->physics->AddBody(c_obstacles[c], 0);
+		if(c != block.id)
+			body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
 	}
 
-	
+
 	Cube p(5, 1, 1000);
 	p.SetPos(0, 8, 0);
 
@@ -108,6 +116,16 @@ update_status ModuleSceneIntro::Update(float dt)
 		obstacles[c]->GetTransform(c_obstacles[c].transform.M);
 		c_obstacles[c].Render();
 	}
+
+	c_obstacles[8].SetPos(block.body->GetBody()->getCenterOfMassPosition().x(), block.body->GetBody()->getCenterOfMassPosition().y(), block.body->GetBody()->getCenterOfMassPosition().z());
+
+	if (block.body->GetBody()->getCenterOfMassPosition().y() > 15)
+		block.backwards = true;
+	if (block.body->GetBody()->getCenterOfMassPosition().y() < 8)
+		block.backwards = false;
+
+	block.Move();
+	c_obstacles[8].Render();
 
 	return UPDATE_CONTINUE;
 }

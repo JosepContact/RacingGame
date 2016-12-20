@@ -124,22 +124,6 @@ update_status ModulePlayer::Update(float dt)
 		if (vehicle->GetBody()->getAngularVelocity().getX() > -4)
 		vehicle->vehicle->getRigidBody()->applyImpulse({ 0, -1.5, 0 }, vehicle->vehicle->getChassisWorldTransform().getOrigin());
 	}
-<<<<<<< HEAD
-
-	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) {
-		if (vehicle->GetBody()->getAngularVelocity().getX() > -4)
-		vehicle->GetBody()->applyForce(btVector3(0, -15, 0), btVector3(vehicle_pos.getX(), vehicle_pos.getY(), vehicle_pos.getZ() + 10));
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) {
-		if (vehicle->GetBody()->getAngularVelocity().getX() < 4)
-			vehicle->GetBody()->applyForce(btVector3(0, 15, 0), btVector3(vehicle_pos.getX(), vehicle_pos.getY(), vehicle_pos.getZ() - 10));
-	}
-
-	//App->camera->Position.x = App->player->vehicle->GetChassisWorldTransform
-=======
->>>>>>> origin/master
-
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -151,22 +135,9 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
-	/*
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
-	vec3 pos(hello.getX() - 10 * vehicle->vehicle->getForwardVector().getX(), hello.getY() + 10 , hello.getZ() - 10 * vehicle->vehicle->getForwardVector().getZ());
-	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 10 * vehicle->vehicle->getForwardVector().getX();
-	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 10 * vehicle->vehicle->getForwardVector().getZ();
-	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10 * vehicle->vehicle->getForwardVector().getY();
-	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));*/
-
-	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();
-<<<<<<< HEAD
-	vec3 pos(hello.getX() - 40, hello.getY() + 8 , hello.getZ() - 6 * vehicle->vehicle->getForwardVector().getZ());
-	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() + 1;
-=======
 	vec3 pos(vehicle->vehicle->getChassisWorldTransform().getOrigin().getX() - 40, hello.getY() + 6 , hello.getZ() -6 * vehicle->vehicle->getForwardVector().getZ());
 	float camera_x = vehicle->vehicle->getChassisWorldTransform().getOrigin().getX();
->>>>>>> origin/master
 	float camera_z = vehicle->vehicle->getChassisWorldTransform().getOrigin().getZ() + 15;
 	float camera_y = vehicle->vehicle->getChassisWorldTransform().getOrigin().getY() + 10;
 	App->camera->LookAt(vec3(camera_x, camera_y, camera_z));
