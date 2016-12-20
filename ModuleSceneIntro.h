@@ -4,8 +4,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 
-#define MAX_SNAKE 2
-
+#define NCUBES 20
 struct PhysBody3D;
 struct PhysMotor3D;
 
@@ -19,19 +18,16 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+	void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2);
+
+	vec3 ondeath;
 
 public:
-	/*
-	PhysBody3D* pb_snake[MAX_SNAKE];
-	Sphere s_snake[MAX_SNAKE];
-
-	PhysBody3D* pb_snake2[MAX_SNAKE];
-	Sphere s_snake2[MAX_SNAKE];
-	*/
 	p2DynArray<PhysBody3D*> obstacles;
 	p2DynArray<Cube> c_obstacles;
-	Cube b;
-	PhysBody3D* hi;
-	
+
+	PhysBody3D* sensor_fail;
+	p2List<PhysBody3D*> sensors;
+	PhysBody3D* checkpoints[2];
+
 };

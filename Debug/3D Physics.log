@@ -1,3 +1,31 @@
-﻿  ModulePlayer.cpp
-  3D Physics.vcxproj -> C:\Users\Usuario\Documents\GitHub\RacingGame\Debug\3D Physics - class5.exe
-  3D Physics.vcxproj -> C:\Users\Usuario\Documents\GitHub\RacingGame\Debug\3D Physics - class5.pdb (Full PDB)
+﻿Build started 20/12/2016 13:27:46.
+     1>Project "D:\CITM\DDVII\Physics II\Race\3D Physics.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\VisualStudio2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleSceneIntro.cpp
+         ModuleSceneIntro.cpp
+     1>d:\citm\ddvii\physics ii\race\modulesceneintro.cpp(80): warning C4305: 'argument': truncation from 'double' to 'float'
+       Link:
+         D:\VisualStudio2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\CITM\DDVII\Physics II\Race\Debug\3D Physics - class5.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\CITM\DDVII\Physics II\Race\Debug\3D Physics - class5.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\CITM\DDVII\Physics II\Race\Debug\3D Physics - class5.lib" /MACHINE:X86 /SAFESEH:NO Debug\Application.obj
+         Debug\Color.obj
+         Debug\glmath.obj
+         Debug\Light.obj
+         Debug\log.obj
+         Debug\Main.obj
+         Debug\ModuleAudio.obj
+         Debug\ModuleCamera3D.obj
+         Debug\ModuleInput.obj
+         Debug\ModulePhysics3D.obj
+         Debug\ModulePlayer.obj
+         Debug\ModuleRenderer3D.obj
+         Debug\ModuleSceneIntro.obj
+         Debug\ModuleWindow.obj
+         Debug\PhysBody3D.obj
+         Debug\PhysVehicle3D.obj
+         Debug\Primitive.obj
+         Debug\Timer.obj
+         3D Physics.vcxproj -> D:\CITM\DDVII\Physics II\Race\Debug\3D Physics - class5.exe
+     1>Done Building Project "D:\CITM\DDVII\Physics II\Race\3D Physics.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.98

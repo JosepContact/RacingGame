@@ -20,11 +20,13 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+
 public:
 
-	PhysBody3D* MotoJoint;
-
+	
 	PhysVehicle3D* vehicle;
+	PhysBody3D* MotoJoint;
+	PhysBody3D* vehiclepoint;
 	float turn;
 	float acceleration;
 	float brake;
