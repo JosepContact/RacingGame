@@ -22,7 +22,6 @@ public:
 
 
 public:
-
 	
 	PhysVehicle3D* vehicle;
 	PhysBody3D* MotoJoint;

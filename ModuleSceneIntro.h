@@ -4,10 +4,12 @@
 #include "Globals.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+#include "ModulePlayer.h"
 
 #define NCUBES 20
 struct PhysBody3D;
 struct PhysMotor3D;
+struct PhysVehicle3D;
 
 struct MBlock {
 	PhysBody3D* body;
