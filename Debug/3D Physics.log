@@ -1,16 +1,113 @@
-﻿  ModuleSceneIntro.cpp
-c:\users\pauor\documents\github\racinggame\modulesceneintro.cpp(89): warning C4305: 'argument': truncation from 'double' to 'float'
-  Generating Code...
-  Compiling...
-  ModuleWindow.cpp
-  ModuleRenderer3D.cpp
-  ModulePlayer.cpp
-  ModulePhysics3D.cpp
-  ModuleInput.cpp
-  ModuleCamera3D.cpp
-  ModuleAudio.cpp
-  Main.cpp
-  Application.cpp
-  Generating Code...
-  3D Physics.vcxproj -> C:\Users\pauor\Documents\GitHub\RacingGame\Debug\3D Physics - class5.exe
-  3D Physics.vcxproj -> C:\Users\pauor\Documents\GitHub\RacingGame\Debug\3D Physics - class5.pdb (Full PDB)
+﻿Build started 21/12/2016 12:30:24.
+     1>Project "D:\CITM\DDVII\Physics II\Race Sec\3D Physics.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\VisualStudio2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp Main.cpp ModuleAudio.cpp ModuleCamera3D.cpp ModuleInput.cpp ModulePhysics3D.cpp ModulePlayer.cpp ModuleRenderer3D.cpp ModuleSceneIntro.cpp ModuleWindow.cpp
+         ModuleSceneIntro.cpp
+     1>d:\citm\ddvii\physics ii\race sec\modulesceneintro.cpp(89): warning C4305: 'argument': truncation from 'double' to 'float'
+         ModulePlayer.cpp
+         Generating Code...
+         Compiling...
+         Application.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         ModuleWindow.cpp
+         ModuleRenderer3D.cpp
+         ModulePhysics3D.cpp
+         ModuleInput.cpp
+         ModuleCamera3D.cpp
+         ModuleAudio.cpp
+         Main.cpp
+       Link:
+         D:\VisualStudio2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\CITM\DDVII\Physics II\Race Sec\Debug\3D Physics - class5.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"D:\CITM\DDVII\Physics II\Race Sec\Debug\3D Physics - class5.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\CITM\DDVII\Physics II\Race Sec\Debug\3D Physics - class5.lib" /MACHINE:X86 /SAFESEH:NO Debug\Application.obj
+         Debug\Color.obj
+         Debug\glmath.obj
+         Debug\Light.obj
+         Debug\log.obj
+         Debug\Main.obj
+         Debug\ModuleAudio.obj
+         Debug\ModuleCamera3D.obj
+         Debug\ModuleInput.obj
+         Debug\ModulePhysics3D.obj
+         Debug\ModulePlayer.obj
+         Debug\ModuleRenderer3D.obj
+         Debug\ModuleSceneIntro.obj
+         Debug\ModuleWindow.obj
+         Debug\PhysBody3D.obj
+         Debug\PhysVehicle3D.obj
+         Debug\Primitive.obj
+         Debug\Timer.obj
+     1>BulletDynamics_debug.lib(btDiscreteDynamicsWorld.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btRigidBody.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btConeTwistConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btContactConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btGeneric6DofConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btHingeConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btPoint2PointConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btSequentialImpulseConstraintSolver.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btTypedConstraint.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btRaycastVehicle.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletDynamics_debug.lib(btWheelInfo.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btDbvt.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btDbvtBroadphase.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btDispatcher.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btOverlappingPairCache.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btQuantizedBvh.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btActivatingCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btBoxBoxCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btBoxBoxDetector.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCollisionDispatcher.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCollisionObject.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCollisionWorld.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCompoundCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCompoundCompoundCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexConcaveCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexConvexAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexPlaneCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btDefaultCollisionConfiguration.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btEmptyCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btHashedSimplePairCache.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btManifoldResult.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btSimulationIslandManager.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btSphereSphereCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btSphereTriangleCollisionAlgorithm.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btUnionFind.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(SphereTriangleDetector.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btBoxShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btBvhTriangleMeshShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCollisionShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCompoundShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConcaveShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexInternalShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexPolyhedron.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btCylinderShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btOptimizedBvh.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btPolyhedralConvexShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btSphereShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btStaticPlaneShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btTriangleCallback.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btTriangleMeshShape.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btContinuousConvexCollision.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btConvexCast.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btGjkConvexCast.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btGjkEpa2.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btGjkEpaPenetrationDepthSolver.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btGjkPairDetector.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btMinkowskiPenetrationDepthSolver.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btPersistentManifold.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btPolyhedralContactClipping.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btRaycastCallback.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btSubSimplexConvexCast.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>BulletCollision_debug.lib(btVoronoiSimplexSolver.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>LinearMath_debug.lib(btAlignedAllocator.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>LinearMath_debug.lib(btConvexHullComputer.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>LinearMath_debug.lib(btGeometryUtil.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>LinearMath_debug.lib(btQuickprof.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>LinearMath_debug.lib(btVector3.obj) : warning LNK4204: 'D:\CITM\DDVII\Physics II\Race Sec\Debug\vc140.pdb' is missing debugging information for referencing module; linking object as if no debug info
+         3D Physics.vcxproj -> D:\CITM\DDVII\Physics II\Race Sec\Debug\3D Physics - class5.exe
+     1>Done Building Project "D:\CITM\DDVII\Physics II\Race Sec\3D Physics.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.06

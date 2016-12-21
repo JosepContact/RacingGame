@@ -2,7 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
-
+#include "Time.h"
 struct PhysVehicle3D;
 
 #define MAX_ACCELERATION 1000.0f
@@ -20,13 +20,14 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-
 public:
-	
 	PhysVehicle3D* vehicle;
 	PhysBody3D* MotoJoint;
 	PhysBody3D* vehiclepoint;
 	float turn;
 	float acceleration;
 	float brake;
+
+	Timer time;
+	uint deaths;
 };

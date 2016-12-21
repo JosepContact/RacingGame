@@ -138,6 +138,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
 		App->player->vehiclepoint->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
+		App->player->deaths++;
 	}
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 15;
