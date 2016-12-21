@@ -20,6 +20,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void RestartCar();
+
 public:
 	PhysVehicle3D* vehicle;
 	PhysBody3D* MotoJoint;

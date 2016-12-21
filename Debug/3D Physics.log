@@ -1,3 +1,17 @@
-﻿  ModulePlayer.cpp
+﻿  ModuleSceneIntro.cpp
+c:\users\usuario\documents\github\racinggame\modulesceneintro.cpp(158): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\usuario\documents\github\racinggame\modulesceneintro.cpp(164): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\usuario\documents\github\racinggame\modulesceneintro.cpp(170): warning C4305: 'argument': truncation from 'double' to 'float'
+  ModulePlayer.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  ModuleWindow.cpp
+  ModuleRenderer3D.cpp
+  ModulePhysics3D.cpp
+  ModuleInput.cpp
+  ModuleCamera3D.cpp
+  ModuleAudio.cpp
+  Main.cpp
+  Application.cpp
   3D Physics.vcxproj -> C:\Users\Usuario\Documents\GitHub\RacingGame\Debug\3D Physics - class5.exe
   3D Physics.vcxproj -> C:\Users\Usuario\Documents\GitHub\RacingGame\Debug\3D Physics - class5.pdb (Full PDB)

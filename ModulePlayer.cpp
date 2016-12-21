@@ -101,6 +101,21 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+void ModulePlayer::RestartCar()
+{
+	float trans[16];
+	vehicle->GetTransform(trans);
+	trans[8] = trans[9] = trans[10] = 0;
+	vehicle->SetTransform(trans);
+	vehiclepoint->SetPos(App->scene_intro->ondeath.x, App->scene_intro->ondeath.y, App->scene_intro->ondeath.z);
+	vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
+	vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
+	vehiclepoint->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
+	vehiclepoint->GetBody()->setAngularVelocity(btVector3(0, 0, 0));
+	deaths++;
+	App->audio->PlayFx(App->player->startmotor);
+}
+
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
