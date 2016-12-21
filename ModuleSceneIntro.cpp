@@ -104,7 +104,7 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[17].color = Blue;
 
 	
-	c_obstacles[18].size = 12;
+	c_obstacles[18].size = 9;
 	c_obstacles[18].SetPos(0, 8, 52);
 	c_obstacles[18].color = { .63f, 0, .33f };
 
@@ -127,11 +127,12 @@ bool ModuleSceneIntro::Start()
 
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
-		if (c != block[0].id && c != block[1].id && c != block[2].id && c!= block[3].id)
-			if(c == 14)
-			body = App->physics->AddBody(c_obstacles[c], 200);
+		if (c != block[0].id && c != block[1].id && c != block[2].id && c != block[3].id) {
+			if (c == 14)
+				body = App->physics->AddBody(c_obstacles[c], 200);
 			else
-		body = App->physics->AddBody(c_obstacles[c], 0);
+				body = App->physics->AddBody(c_obstacles[c], 0);
+		}
 		obstacles.PushBack(body);
 	}
 
@@ -200,7 +201,8 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (uint c = 0; c < NCUBES; ++c) {
 		obstacles[c]->GetTransform(c_obstacles[c].transform.M);
-		c_obstacles[c].Render();
+		if(c != 18)
+			c_obstacles[c].Render();
 	}
 
 	c_obstacles[8].SetPos(block[0].body->GetBody()->getCenterOfMassPosition().x(), block[0].body->GetBody()->getCenterOfMassPosition().y(), block[0].body->GetBody()->getCenterOfMassPosition().z());
@@ -245,6 +247,7 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 {
 	if (body1 == sensor_fail && body2 == App->player->vehiclepoint) {
+		float trans[16];
 		App->player->vehiclepoint->SetPos(ondeath.x, ondeath.y, ondeath.z);
 		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));

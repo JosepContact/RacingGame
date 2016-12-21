@@ -125,7 +125,6 @@ update_status ModulePlayer::Update(float dt)
 	{
 		acceleration = MAX_ACCELERATION;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) App->audio->PlayFx(gas);
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{
@@ -145,6 +144,10 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (vehicle->GetBody()->getAngularVelocity().getX() > -5)
 			vehicle->GetBody()->applyImpulse({ 0, 25, 0 }, { 0, 0, 3 });
+	}
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
