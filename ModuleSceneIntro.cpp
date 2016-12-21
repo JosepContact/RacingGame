@@ -67,13 +67,30 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[8].SetPos(0, 10, -110);
 	c_obstacles[8].color = { .63f, 0, .33f };
 
-	block.body = App->physics->AddBody(c_obstacles[8], 0);
-	block.LSpeed = { 0, 0.1f, 0 };
-	block.id = 8;
+	c_obstacles[9].size = 10;
+	c_obstacles[9].SetPos(0, 16, -98);
+	c_obstacles[9].color = { .63f, 0, .33f };
+
+	c_obstacles[10].size = 15;
+	c_obstacles[10].SetPos(0, 20, -80);
+	c_obstacles[10].color = Green;
+
+	c_obstacles[11].size = 7;
+	c_obstacles[11].SetPos(0, 20, -60);
+	c_obstacles[11].color = Blue;
+
+
+	block[0].body = App->physics->AddBody(c_obstacles[8], 0);
+	block[0].LSpeed = { 0, 0.1f, 0 };
+	block[0].id = 8;
+
+	block[1].body = App->physics->AddBody(c_obstacles[9], 0);
+	block[1].LSpeed = { 0, 0.1f, 0 };
+	block[1].id = 9;
 
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
-		if(c != block.id)
+		if(c != block[0].id && c != block[1].id )
 			body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
 	}
@@ -91,6 +108,13 @@ bool ModuleSceneIntro::Start()
 	checkpoints[0] = App->physics->AddBody(check1, 0);
 	checkpoints[0]->SetAsSensor(true);
 	checkpoints[0]->collision_listeners.add(this);
+	
+	Cube check2(3, 10, 0.1);
+	check1.SetPos(0, 25, -60);
+	checkpoints[1] = App->physics->AddBody(check1, 0);
+	checkpoints[1]->SetAsSensor(true);
+	checkpoints[1]->collision_listeners.add(this);
+
 
 
 	return ret;
@@ -118,15 +142,24 @@ update_status ModuleSceneIntro::Update(float dt)
 		c_obstacles[c].Render();
 	}
 
-	c_obstacles[8].SetPos(block.body->GetBody()->getCenterOfMassPosition().x(), block.body->GetBody()->getCenterOfMassPosition().y(), block.body->GetBody()->getCenterOfMassPosition().z());
+	c_obstacles[8].SetPos(block[0].body->GetBody()->getCenterOfMassPosition().x(), block[0].body->GetBody()->getCenterOfMassPosition().y(), block[0].body->GetBody()->getCenterOfMassPosition().z());
+	c_obstacles[9].SetPos(block[1].body->GetBody()->getCenterOfMassPosition().x(), block[1].body->GetBody()->getCenterOfMassPosition().y(), block[1].body->GetBody()->getCenterOfMassPosition().z());
 
-	if (block.body->GetBody()->getCenterOfMassPosition().y() > 15)
-		block.backwards = true;
-	if (block.body->GetBody()->getCenterOfMassPosition().y() < 8)
-		block.backwards = false;
+	if (block[0].body->GetBody()->getCenterOfMassPosition().y() > 15)
+		block[0].backwards = true;
+	if (block[0].body->GetBody()->getCenterOfMassPosition().y() < 6)
+		block[0].backwards = false;
 
-	block.Move();
+	if (block[1].body->GetBody()->getCenterOfMassPosition().y() > 22)
+		block[1].backwards = true;
+	if (block[1].body->GetBody()->getCenterOfMassPosition().y() < 9)
+		block[1].backwards = false;
+
+	block[0].Move();
+	block[1].Move();
+
 	c_obstacles[8].Render();
+	c_obstacles[9].Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -143,5 +176,19 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 15;
 		ondeath.z = -123;
+	} else if (body1 == checkpoints[1] && body2 == App->player->vehiclepoint) {
+		ondeath.y = 25;
+		ondeath.z = -60;
 	}
+}
+
+void MBlock::Move() {
+	float trans[16];
+	body->GetTransform(trans);
+
+	if (backwards == false)
+		body->SetPos(trans[12] + LSpeed.x, trans[13] + LSpeed.y, trans[14] + LSpeed.z);
+	else
+		body->SetPos(trans[12] - LSpeed.x, trans[13] - LSpeed.y, trans[14] - LSpeed.z);
+
 }

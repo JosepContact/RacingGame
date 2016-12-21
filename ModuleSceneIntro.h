@@ -18,21 +18,10 @@ struct MBlock {
 
 	uint id;
 
-public:
 	MBlock() : backwards(false) {
 		LSpeed = { 0, 0, 0 };
 	};
-
-	void Move() {
-		float trans[16];
-		body->GetTransform(trans);
-
-		if (backwards == false)
-			body->SetPos(trans[12] + LSpeed.x, trans[13] + LSpeed.y, trans[14] + LSpeed.z);
-		else 
-			body->SetPos(trans[12] - LSpeed.x, trans[13] - LSpeed.y, trans[14] - LSpeed.z);
-		
-	}
+	void Move();
 };
 
 class ModuleSceneIntro : public Module
@@ -57,6 +46,6 @@ public:
 	p2List<PhysBody3D*> sensors;
 	PhysBody3D* checkpoints[2];
 
-	MBlock block;
+	MBlock block[2];
 
 };

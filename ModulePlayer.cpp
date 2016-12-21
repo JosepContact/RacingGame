@@ -101,6 +101,18 @@ update_status ModulePlayer::Update(float dt)
 	btVector3 vehicle_pos = vehicle->vehicle->getChassisWorldTransform().getOrigin();
 
 	turn = acceleration = brake = 0.0f;
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+		vehicle->Push(0, 100, 0);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+		vehicle->Push(0, 0, 100);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		vehicle->Push(0, 0, -100);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+		vehicle->Push(0, -50, 0);
+	}
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
