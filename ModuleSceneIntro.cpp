@@ -63,12 +63,12 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[7].SetPos(0, 15, -218);
 	c_obstacles[7].color = Red;
 
-	c_obstacles[8].size = 10;
-	c_obstacles[8].SetPos(0, 10, -110);
+	c_obstacles[8].size = 13;
+	c_obstacles[8].SetPos(0, 10, -112);
 	c_obstacles[8].color = { .63f, 0, .33f };
 
-	c_obstacles[9].size = 10;
-	c_obstacles[9].SetPos(0, 16, -100);
+	c_obstacles[9].size = 13;
+	c_obstacles[9].SetPos(0, 16, -98);
 	c_obstacles[9].color = { .63f, 0, .33f };
 
 	c_obstacles[10].size = 15;
@@ -91,8 +91,8 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[14].SetPos(0, 23, -20);
 	c_obstacles[14].color = Red;
 
-	c_obstacles[15].size = 15;
-	c_obstacles[15].SetPos(0, 5, 4);
+	c_obstacles[15].size = 20;
+	c_obstacles[15].SetPos(0, 3, -2);
 	c_obstacles[15].color = Green;
 
 	c_obstacles[16].size = 6;
@@ -100,12 +100,12 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[16].color = { .63f, 0, .33f };
 
 	c_obstacles[17].size = 7;
-	c_obstacles[17].SetPos(0, 8, 42);
+	c_obstacles[17].SetPos(0, 8,38);
 	c_obstacles[17].color = Blue;
 
 	
 	c_obstacles[18].size = 9;
-	c_obstacles[18].SetPos(0, 8, 52);
+	c_obstacles[18].SetPos(0, 8, 48);
 	c_obstacles[18].color = { .63f, 0, .33f };
 
 	c_obstacles[GOALCUBE].size = 20;
@@ -172,7 +172,7 @@ bool ModuleSceneIntro::Start()
 	checkpoints[1]->collision_listeners.add(this);
 
 	Cube check3(3, 10, 0.1);
-	check3.SetPos(0, 12, 42);
+	check3.SetPos(0, 12, 38);
 	checkpoints[2] = App->physics->AddBody(check3, 0);
 	checkpoints[2]->SetAsSensor(true);
 	checkpoints[2]->collision_listeners.add(this);
@@ -188,7 +188,7 @@ bool ModuleSceneIntro::Start()
 	cpfx = App->audio->LoadFx("FX/Checkpoint.wav");
 	yousuck = App->audio->LoadFx("FX/YouSuck.wav");
 	bloodyspectacular = App->audio->LoadFx("FX/BloodySpectacular.wav");
-	//App->audio->PlayFx(music, -1);
+	App->audio->PlayFx(music, -1);
 	return ret;
 }
 
@@ -231,9 +231,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (block[1].body->GetBody()->getCenterOfMassPosition().y() < 9)
 		block[1].backwards = false;
 
-	if (block[2].body->GetBody()->getCenterOfMassPosition().z() > 33)
+	if (block[2].body->GetBody()->getCenterOfMassPosition().z() > 29)
 		block[2].backwards = true;
-	if (block[2].body->GetBody()->getCenterOfMassPosition().z() < 16)
+	if (block[2].body->GetBody()->getCenterOfMassPosition().z() < 12)
 		block[2].backwards = false;
 
 	if (block[3].body->GetBody()->getCenterOfMassPosition().y() > 60)
@@ -288,7 +288,8 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 	 c_obstacles[11].color = Blue;
 	 c_obstacles[17].color = Blue;
 	 App->audio->PlayFx(bloodyspectacular);
-	 if (App->player->best/1000 > App->player->time.Read()/1000 + App->player->deaths * 5 || App->player->best == 0)
+	
+	 if (App->player->best > App->player->time.Read()/1000 + App->player->deaths * 5 || App->player->best == 0)
 	 App->player->best = ( (float)App->player->time.Read()/1000) + App->player->deaths * 5;
 	 App->player->time.Start();
 	 App->player->deaths = 0;
