@@ -104,7 +104,7 @@ bool ModuleSceneIntro::Start()
 		PhysBody3D* body;
 		if(c != block[0].id && c != block[1].id )
 			if(c == 14)
-			body = App->physics->AddBody(c_obstacles[c], 210);
+			body = App->physics->AddBody(c_obstacles[c], 200);
 			else
 		body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
