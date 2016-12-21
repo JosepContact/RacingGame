@@ -136,7 +136,6 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
 		vehicle->Push(0, -50, 0);
 	}
-
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 	{
 		RestartCar();
@@ -165,10 +164,6 @@ update_status ModulePlayer::Update(float dt)
 	{
 		if (vehicle->GetBody()->getAngularVelocity().getX() > -5)
 			vehicle->GetBody()->applyImpulse({ 0, 25, 0 }, { 0, 0, 3 });
-	}
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
-	{
-		
 	}
 
 	vehicle->ApplyEngineForce(acceleration);

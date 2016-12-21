@@ -100,13 +100,13 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[16].color = { .63f, 0, .33f };
 
 	c_obstacles[17].size = 7;
-	c_obstacles[17].SetPos(0, 8,38);
+	c_obstacles[17].SetPos(0, 8, 29);
 	c_obstacles[17].color = Blue;
 
-	
 	c_obstacles[18].size = 9;
-	c_obstacles[18].SetPos(0, 8, 48);
+	c_obstacles[18].SetPos(0, 8, 37);
 	c_obstacles[18].color = { .63f, 0, .33f };
+
 
 	c_obstacles[GOALCUBE].size = 20;
 	c_obstacles[GOALCUBE].SetPos(0, 14, 100);
@@ -122,18 +122,18 @@ bool ModuleSceneIntro::Start()
 	block[1].id = 9;
 
 	block[2].body = App->physics->AddBody(c_obstacles[16], 0);
-	block[2].LSpeed = { 0, 0.00f, 0.16f };
+	block[2].LSpeed = { 0, 0.00f, 0.05f };
 	block[2].id = 16;
 
 	block[3].body = App->physics->AddBody(c_obstacles[18], 0);
-	block[3].LSpeed = { 0, 1.0f, 0.00f };
+	block[3].LSpeed = { 0, 0.2f, 0.00f };
 	block[3].id = 18;
 
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
 		if (c != block[0].id && c != block[1].id && c != block[2].id && c != block[3].id) {
 			if (c == 14)
-				body = App->physics->AddBody(c_obstacles[c], 200);
+				body = App->physics->AddBody(c_obstacles[c], 50);
 			else
 				body = App->physics->AddBody(c_obstacles[c], 0);
 		}
@@ -172,7 +172,7 @@ bool ModuleSceneIntro::Start()
 	checkpoints[1]->collision_listeners.add(this);
 
 	Cube check3(3, 10, 0.1);
-	check3.SetPos(0, 12, 38);
+	check3.SetPos(0, 12, 29);
 	checkpoints[2] = App->physics->AddBody(check3, 0);
 	checkpoints[2]->SetAsSensor(true);
 	checkpoints[2]->collision_listeners.add(this);
@@ -231,14 +231,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (block[1].body->GetBody()->getCenterOfMassPosition().y() < 9)
 		block[1].backwards = false;
 
-	if (block[2].body->GetBody()->getCenterOfMassPosition().z() > 29)
+	if (block[2].body->GetBody()->getCenterOfMassPosition().z() > 24)
 		block[2].backwards = true;
 	if (block[2].body->GetBody()->getCenterOfMassPosition().z() < 12)
 		block[2].backwards = false;
 
-	if (block[3].body->GetBody()->getCenterOfMassPosition().y() > 60)
+	if (block[3].body->GetBody()->getCenterOfMassPosition().y() > 55)
 		block[3].backwards = true;
-	if (block[3].body->GetBody()->getCenterOfMassPosition().y() < 9)
+	if (block[3].body->GetBody()->getCenterOfMassPosition().y() < 6)
 		block[3].backwards = false;
 
 	block[0].Move();
