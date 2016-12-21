@@ -138,13 +138,13 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		if(vehicle->GetBody()->getAngularVelocity().getX() < 4)
-		vehicle->vehicle->getRigidBody()->applyImpulse({ 0, 1.5, 0 }, vehicle->vehicle->getChassisWorldTransform().getOrigin());
+		if (vehicle->GetBody()->getAngularVelocity().getX() < 5)
+			vehicle->GetBody()->applyImpulse({ 0, -25, 0 }, { 0, 0, 3 });
 	}
 	if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		if (vehicle->GetBody()->getAngularVelocity().getX() > -4)
-		vehicle->vehicle->getRigidBody()->applyImpulse({ 0, -1.5, 0 }, vehicle->vehicle->getChassisWorldTransform().getOrigin());
+		if (vehicle->GetBody()->getAngularVelocity().getX() > -5)
+			vehicle->GetBody()->applyImpulse({ 0, 25, 0 }, { 0, 0, 3 });
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
