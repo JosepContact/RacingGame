@@ -6,7 +6,8 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 
-#define NCUBES 25
+#define NCUBES 30
+#define GOALCUBE 29
 struct PhysBody3D;
 struct PhysMotor3D;
 struct PhysVehicle3D;
@@ -45,8 +46,9 @@ public:
 	PhysBody3D* sensor_fail;
 	p2List<PhysBody3D*> sensors;
 	PhysBody3D* checkpoints[3];
-
+	PhysBody3D* goal;
 	MBlock block[4];
+
 
 	uint music;
 	uint cpfx;

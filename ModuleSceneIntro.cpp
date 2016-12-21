@@ -108,6 +108,10 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[18].SetPos(0, 8, 52);
 	c_obstacles[18].color = { .63f, 0, .33f };
 
+	c_obstacles[GOALCUBE].size = 20;
+	c_obstacles[GOALCUBE].SetPos(0, 14, 100);
+	c_obstacles[GOALCUBE].color = { 1,1,1 };
+
 
 	block[0].body = App->physics->AddBody(c_obstacles[8], 0);
 	block[0].LSpeed = { 0, 0.05f, 0 };
@@ -172,6 +176,12 @@ bool ModuleSceneIntro::Start()
 	checkpoints[2] = App->physics->AddBody(check3, 0);
 	checkpoints[2]->SetAsSensor(true);
 	checkpoints[2]->collision_listeners.add(this);
+	
+	Cube fin(3, 30, 0.1);
+	fin.SetPos(0, 20, 100);
+	goal = App->physics->AddBody(fin, 0);
+	goal->SetAsSensor(true);
+	goal->collision_listeners.add(this);
 
 	// FX -------------
 	music = App->audio->LoadFx("Music/bgmusic.ogg");
@@ -270,6 +280,20 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 
 	 c_obstacles[17].color = { .24f, .70f, .44f };
  }
+ else if (body1 == goal && body2 == App->player->vehiclepoint) {
+	 ondeath.y = 15;
+	 ondeath.z = -200;
+	 App->player->vehiclepoint->SetPos(ondeath.x, ondeath.y, ondeath.z);
+	 c_obstacles[6].color = Blue;
+	 c_obstacles[11].color = Blue;
+	 c_obstacles[17].color = Blue;
+	 App->audio->PlayFx(bloodyspectacular);
+	 if (App->player->best/1000 > App->player->time.Read()/1000 + App->player->deaths * 5 || App->player->best == 0)
+	 App->player->best = ( (float)App->player->time.Read()/1000) + App->player->deaths * 5;
+	 App->player->time.Start();
+	 App->player->deaths = 0;
+ }
+
 }
 
 void MBlock::Move() {

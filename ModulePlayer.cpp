@@ -90,6 +90,7 @@ bool ModulePlayer::Start()
 
 	vehiclepoint = vehicle;
 	deaths = 0;
+	best = 0;
 	return true;
 }
 
@@ -172,7 +173,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h Deaths: %d Time:%.2f Best: -", vehicle->GetKmh(), deaths, ((float)time.Read() / 1000  ) + deaths*5);
+	sprintf_s(title, "%.1f Km/h Deaths: %d Time:%.2f Best: %.2f", vehicle->GetKmh(), deaths, ((float)time.Read() / 1000  ) + deaths*5, best);
 	App->window->SetTitle(title);
 
 	btVector3 hello = vehicle->vehicle->getChassisWorldTransform().getOrigin();

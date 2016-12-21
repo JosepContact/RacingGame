@@ -32,7 +32,7 @@ public:
 
 	Timer time;
 	uint deaths;
-
+	float best;
 	uint startmotor;
 	uint gas;
 
