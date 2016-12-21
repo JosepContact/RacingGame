@@ -137,6 +137,11 @@ update_status ModulePlayer::Update(float dt)
 		vehicle->Push(0, -50, 0);
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	{
+		RestartCar();
+	}
+
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
