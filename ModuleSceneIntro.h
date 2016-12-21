@@ -6,7 +6,7 @@
 #include "PhysBody3D.h"
 #include "ModulePlayer.h"
 
-#define NCUBES 30
+#define NCUBES 50
 #define GOALCUBE 29
 struct PhysBody3D;
 struct PhysMotor3D;

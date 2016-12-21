@@ -103,8 +103,8 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[17].SetPos(0, 8, 29);
 	c_obstacles[17].color = Blue;
 
-	c_obstacles[18].size = 9;
-	c_obstacles[18].SetPos(0, 8, 37);
+	c_obstacles[18].size = 10;
+	c_obstacles[18].SetPos(0, 8, 75);
 	c_obstacles[18].color = { .63f, 0, .33f };
 
 	c_obstacles[19].size = 30;
@@ -140,6 +140,15 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[26].size = 3;
 	c_obstacles[26].SetPos(-1, 3.1f, 156);
 	c_obstacles[26].color = Red;
+
+	c_obstacles[28].size = 60;
+	c_obstacles[28].SetPos(40, 0, 110);
+	c_obstacles[28].color = Red;
+	c_obstacles[28].SetRotation(40, { -1, 0, 0 });
+
+	//c_obstacles[30].size = 3;
+	//c_obstacles[30].SetPos(-1, 3.1f, 156);
+	//c_obstacles[30].color = Red;
 
 	c_obstacles[GOALCUBE].size = 20;
 	c_obstacles[GOALCUBE].SetPos(0, 14, 500);
