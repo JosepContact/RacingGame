@@ -179,6 +179,10 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[35].SetRotation(40, { -1, 0, 0 });
 	c_obstacles[35].color = Red;
 
+	c_obstacles[36].size = 40;
+	c_obstacles[36].SetPos(0, 43, 322);
+	c_obstacles[36].color = Green;
+
 
 
 	c_obstacles[GOALCUBE].size = 20;
@@ -331,6 +335,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	c_obstacles[9].Render();
 	c_obstacles[16].Render();
 	c_obstacles[18].Render();
+
 
 	return UPDATE_CONTINUE;
 }
