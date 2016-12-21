@@ -7,7 +7,7 @@
 #include "ModulePlayer.h"
 
 #define NCUBES 50
-#define GOALCUBE 29
+#define GOALCUBE 49
 struct PhysBody3D;
 struct PhysMotor3D;
 struct PhysVehicle3D;

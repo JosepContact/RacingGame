@@ -146,12 +146,43 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[28].color = Red;
 	c_obstacles[28].SetRotation(40, { -1, 0, 0 });
 
-	//c_obstacles[30].size = 3;
-	//c_obstacles[30].SetPos(-1, 3.1f, 156);
-	//c_obstacles[30].color = Red;
+	c_obstacles[29].size = 20;
+	c_obstacles[29].SetPos(0, 10, 186);
+	c_obstacles[29].color = Red;
+	c_obstacles[29].SetRotation(40, { -1, 0, 0 });
+
+	c_obstacles[30].size = 14;
+	c_obstacles[30].SetPos(0, 18, 245);
+	c_obstacles[30].color = Green;
+	c_obstacles[30].SetRotation(40, { -1, 0, 1 });
+
+	c_obstacles[31].size = 12;
+	c_obstacles[31].SetPos(0, 18, 260);
+	c_obstacles[31].color = Green;
+	c_obstacles[31].SetRotation(50, { 1, 0, 0 });
+
+	c_obstacles[32].size = 9 ;
+	c_obstacles[32].SetPos(0, 18, 270);
+	c_obstacles[32].color = Green;
+
+	c_obstacles[33].size = 9;
+	c_obstacles[33].SetPos(0, 18, 280);
+	c_obstacles[33].color = Green;
+	
+	c_obstacles[34].size = 20;
+	c_obstacles[34].SetPos(40, 10, 256);
+	c_obstacles[34].SetRotation(40, { -1, 0, 0 });
+	c_obstacles[34].color = Red;
+
+	c_obstacles[35].size = 20;
+	c_obstacles[35].SetPos(-20, 10, 256);
+	c_obstacles[35].SetRotation(40, { -1, 0, 0 });
+	c_obstacles[35].color = Red;
+
+
 
 	c_obstacles[GOALCUBE].size = 20;
-	c_obstacles[GOALCUBE].SetPos(0, 14, 500);
+	c_obstacles[GOALCUBE].SetPos(0, 14, 295);
 	c_obstacles[GOALCUBE].color = { 1,1,1 };
 
 
@@ -228,7 +259,7 @@ bool ModuleSceneIntro::Start()
 	checkpoints[2]->collision_listeners.add(this);
 	
 	Cube fin(3, 30, 0.1);
-	fin.SetPos(0, 20, 500);
+	fin.SetPos(0, 18, 295);
 	goal = App->physics->AddBody(fin, 0);
 	goal->SetAsSensor(true);
 	goal->collision_listeners.add(this);
