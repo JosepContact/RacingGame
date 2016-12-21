@@ -107,9 +107,42 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[18].SetPos(0, 8, 37);
 	c_obstacles[18].color = { .63f, 0, .33f };
 
+	c_obstacles[19].size = 30;
+	c_obstacles[19].SetPos(0, 3, 50);
+	c_obstacles[19].color = Red;
+	c_obstacles[19].SetRotation(25, { -1, 0, 0 });
+
+	c_obstacles[20].size = 30;
+	c_obstacles[20].SetPos(0, 3, 110);
+	c_obstacles[20].color = Red;
+	c_obstacles[20].SetRotation(15, { 1, 0, 0 });
+
+	c_obstacles[21].size = 50;
+	c_obstacles[21].SetPos(0, -11, 150);
+	c_obstacles[21].color = Green;
+
+	c_obstacles[22].size = 3;
+	c_obstacles[22].SetPos(1, 3.1f, 140);
+	c_obstacles[22].color = Red;
+	
+	c_obstacles[23].size = 3;
+	c_obstacles[23].SetPos(-1, 3.1f, 144);
+	c_obstacles[23].color = Red;
+
+	c_obstacles[24].size = 3;
+	c_obstacles[24].SetPos(-1, 3.1f, 148);
+	c_obstacles[24].color = Red;
+
+	c_obstacles[25].size = 3;
+	c_obstacles[25].SetPos(1, 3.1f, 152);
+	c_obstacles[25].color = Red;
+
+	c_obstacles[26].size = 3;
+	c_obstacles[26].SetPos(-1, 3.1f, 156);
+	c_obstacles[26].color = Red;
 
 	c_obstacles[GOALCUBE].size = 20;
-	c_obstacles[GOALCUBE].SetPos(0, 14, 100);
+	c_obstacles[GOALCUBE].SetPos(0, 14, 500);
 	c_obstacles[GOALCUBE].color = { 1,1,1 };
 
 
@@ -129,17 +162,25 @@ bool ModuleSceneIntro::Start()
 	block[3].LSpeed = { 0, 0.2f, 0.00f };
 	block[3].id = 18;
 
+	block[4].body = App->physics->AddBody(c_obstacles[27], 0);
+	block[4].LSpeed = { 0, 0.2f, 0.00f };
+	block[4].id = 27;
+
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
-		if (c != block[0].id && c != block[1].id && c != block[2].id && c != block[3].id) {
+		float mass;
+		if (c != block[0].id && c != block[1].id && c != block[2].id && c != block[3].id && c != block[4].id) {
 			if (c == 14)
-				body = App->physics->AddBody(c_obstacles[c], 50);
+				mass = 50;
 			else
-				body = App->physics->AddBody(c_obstacles[c], 0);
+				if (c > 22 && c < 26)
+					mass = 0.3f;
+				else
+					mass = 0;
+			body = App->physics->AddBody(c_obstacles[c], mass);
 		}
 		obstacles.PushBack(body);
 	}
-
 
 	vec3 AnchorA;
 	vec3 AnchorB;
@@ -153,7 +194,7 @@ bool ModuleSceneIntro::Start()
 	App->physics->AddConstraintHinge(*obstacles[13], *obstacles[14], AnchorA, AnchorB, vec3(1, 0, 0), vec3(1, 0, 0));
 
 	Cube p(5, 1, 1000);
-	p.SetPos(0, 8, 0);
+	p.SetPos(0, 1, 0);
 
 	sensor_fail = App->physics->AddBody(p, 0);
 	sensor_fail->SetAsSensor(true);
@@ -178,7 +219,7 @@ bool ModuleSceneIntro::Start()
 	checkpoints[2]->collision_listeners.add(this);
 	
 	Cube fin(3, 30, 0.1);
-	fin.SetPos(0, 20, 100);
+	fin.SetPos(0, 20, 500);
 	goal = App->physics->AddBody(fin, 0);
 	goal->SetAsSensor(true);
 	goal->collision_listeners.add(this);
@@ -273,10 +314,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 		c_obstacles[11].color = { .24f, .70f, .44f };
 	}
  else if (body1 == checkpoints[2] && body2 == App->player->vehiclepoint) {
-	 if (ondeath.z != 42)
+	 if (ondeath.z != 29)
 		 App->audio->PlayFx(cpfx);
 	 ondeath.y = 12;
-	 ondeath.z = 42;
+	 ondeath.z = 29;
 
 	 c_obstacles[17].color = { .24f, .70f, .44f };
  }

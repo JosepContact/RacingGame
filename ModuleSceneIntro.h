@@ -47,7 +47,7 @@ public:
 	p2List<PhysBody3D*> sensors;
 	PhysBody3D* checkpoints[3];
 	PhysBody3D* goal;
-	MBlock block[4];
+	MBlock block[5];
 
 
 	uint music;
