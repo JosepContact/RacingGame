@@ -88,7 +88,7 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[13].color = Red;
 
 	c_obstacles[14].size = 3;
-	c_obstacles[14].SetPos(0, 30, -20);
+	c_obstacles[14].SetPos(0, 25, -20);
 	c_obstacles[14].color = Red;
 
 
@@ -110,16 +110,17 @@ bool ModuleSceneIntro::Start()
 		obstacles.PushBack(body);
 	}
 
+
 	vec3 AnchorA;
 	vec3 AnchorB;
 
-	AnchorA.x = obstacles[14]->GetBody()->getCenterOfMassPosition().x() - obstacles[13]->GetBody()->getCenterOfMassPosition().x();
-	AnchorA.y = obstacles[14]->GetBody()->getCenterOfMassPosition().y() - obstacles[13]->GetBody()->getCenterOfMassPosition().y();
-	AnchorA.z = obstacles[14]->GetBody()->getCenterOfMassPosition().z() - obstacles[13]->GetBody()->getCenterOfMassPosition().z();
-	
-	AnchorB = AnchorA;
+	AnchorA.x = 0;
+	AnchorA.y = 0;
+	AnchorA.z = 0;
 
-	App->physics->AddConstraintP2P(*obstacles[13], *obstacles[14], AnchorA, AnchorB);
+	AnchorB = { 0, 13, 0 };
+
+	App->physics->AddConstraintHinge(*obstacles[13], *obstacles[14], AnchorA, AnchorB, vec3(1, 0, 0), vec3(1, 0, 0));
 
 	Cube p(5, 1, 1000);
 	p.SetPos(0, 8, 0);
