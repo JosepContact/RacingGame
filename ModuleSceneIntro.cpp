@@ -211,11 +211,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 15;
 		ondeath.z = -123;
-		c_obstacles[6].color = Green;
+		c_obstacles[6].color = { .24f, .70f, .44f };
 	} else if (body1 == checkpoints[1] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 25;
 		ondeath.z = -60;
-		c_obstacles[11].color = Green;
+		c_obstacles[11].color = { .24f, .70f, .44f };
 	}
 }
 
