@@ -29,7 +29,6 @@ bool ModulePlayer::Start()
 	gas = App->audio->LoadFx("FX/Gas.wav");
 	App->audio->PlayFx(startmotor);
 
-
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(1, 1, 3);
 	car.chassis_offset.Set(0, 1.5, 0);
@@ -67,7 +66,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].width = wheel_width;
 	car.wheels[0].front = true;
 	car.wheels[0].drive = true;
-	car.wheels[0].brake = false;
+	car.wheels[0].brake = true;
 	car.wheels[0].steering = true;
 
 	// REAR-RIGHT ------------------------
@@ -90,6 +89,9 @@ bool ModulePlayer::Start()
 
 	vehiclepoint = vehicle;
 	deaths = 0;
+
+	debug = false;
+
 	return true;
 }
 
@@ -107,25 +109,31 @@ update_status ModulePlayer::Update(float dt)
 
 	btVector3 vehicle_pos = vehicle->vehicle->getChassisWorldTransform().getOrigin();
 
-	turn = acceleration = brake = 0.0f;
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		vehicle->Push(0, 100, 0);
+	if (debug == true) {
+		turn = acceleration = brake = 0.0f;
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+			vehicle->Push(0, 100, 0);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			vehicle->Push(0, 0, 100);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			vehicle->Push(0, 0, -100);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+			vehicle->Push(0, -50, 0);
+		}
 	}
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		vehicle->Push(0, 0, 100);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		vehicle->Push(0, 0, -100);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		vehicle->Push(0, -50, 0);
+
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		debug = !debug;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) App->audio->PlayFx(gas);
+	//if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) App->audio->PlayFx(gas);
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{

@@ -203,6 +203,10 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 {
 	if (body1 == sensor_fail && body2 == App->player->vehiclepoint) {
+		float trans[16];
+		App->player->vehiclepoint->GetTransform(trans);
+		trans[8] = trans[9] = trans[10] = 0;
+		App->player->vehiclepoint->SetTransform(trans);
 		App->player->vehiclepoint->SetPos(ondeath.x, ondeath.y, ondeath.z);
 		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
