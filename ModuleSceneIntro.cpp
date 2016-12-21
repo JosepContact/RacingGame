@@ -87,8 +87,8 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[13].SetPos(0, 35, -20);
 	c_obstacles[13].color = Red;
 
-	c_obstacles[14].size = 3;
-	c_obstacles[14].SetPos(0, 25, -20);
+	c_obstacles[14].size = 4;
+	c_obstacles[14].SetPos(0, 23, -20);
 	c_obstacles[14].color = Red;
 
 
@@ -104,7 +104,7 @@ bool ModuleSceneIntro::Start()
 		PhysBody3D* body;
 		if(c != block[0].id && c != block[1].id )
 			if(c == 14)
-			body = App->physics->AddBody(c_obstacles[c], 1);
+			body = App->physics->AddBody(c_obstacles[c], 210);
 			else
 		body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
@@ -118,7 +118,7 @@ bool ModuleSceneIntro::Start()
 	AnchorA.y = 0;
 	AnchorA.z = 0;
 
-	AnchorB = { 0, 13, 0 };
+	AnchorB = { 0, -13, 0 };
 
 	App->physics->AddConstraintHinge(*obstacles[13], *obstacles[14], AnchorA, AnchorB, vec3(1, 0, 0), vec3(1, 0, 0));
 
@@ -181,6 +181,8 @@ update_status ModuleSceneIntro::Update(float dt)
 		block[1].backwards = true;
 	if (block[1].body->GetBody()->getCenterOfMassPosition().y() < 9)
 		block[1].backwards = false;
+
+
 
 	block[0].Move();
 	block[1].Move();
