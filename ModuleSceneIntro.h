@@ -49,6 +49,8 @@ public:
 	MBlock block[2];
 
 	uint music;
-	bool music_playing;
+	uint cpfx;
+	uint yousuck;
+	uint bloodyspectacular;
 
 };

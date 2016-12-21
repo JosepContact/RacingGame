@@ -81,7 +81,7 @@ bool ModuleSceneIntro::Start()
 
 	c_obstacles[12].size = 40;
 	c_obstacles[12].SetPos(0, 0, -35);
-	c_obstacles[12].color = { 0.76f, 0.20f, 0.25f };
+	c_obstacles[12].color = Green;
 
 	c_obstacles[13].size = 3;
 	c_obstacles[13].SetPos(0, 35, -20);
@@ -90,6 +90,10 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[14].size = 4;
 	c_obstacles[14].SetPos(0, 23, -20);
 	c_obstacles[14].color = Red;
+
+	c_obstacles[15].size = 15;
+	c_obstacles[15].SetPos(0, 5, 4);
+	c_obstacles[15].color = Green;
 
 
 	block[0].body = App->physics->AddBody(c_obstacles[8], 0);
@@ -141,9 +145,12 @@ bool ModuleSceneIntro::Start()
 	checkpoints[1]->SetAsSensor(true);
 	checkpoints[1]->collision_listeners.add(this);
 
-
+	// FX -------------
 	music = App->audio->LoadFx("Music/bgmusic.ogg");
-	App->audio->PlayFx(music, -1);
+	cpfx = App->audio->LoadFx("FX/Checkpoint.wav");
+	yousuck = App->audio->LoadFx("FX/YouSuck.wav");
+	bloodyspectacular = App->audio->LoadFx("FX/BloodySpectacular.wav");
+	//App->audio->PlayFx(music, -1);
 	return ret;
 }
 
@@ -190,11 +197,6 @@ update_status ModuleSceneIntro::Update(float dt)
 	c_obstacles[8].Render();
 	c_obstacles[9].Render();
 
-	if (music_playing == false) {
-		
-		music_playing = true;
-	}
-
 	return UPDATE_CONTINUE;
 }
 
@@ -205,14 +207,18 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
 		App->player->vehiclepoint->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
-		App->player->deaths++;
+		App->player->deaths++;	
 		App->audio->PlayFx(App->player->startmotor);
 	}
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
+		if (ondeath.z != -123)
+			App->audio->PlayFx(cpfx);
 		ondeath.y = 15;
 		ondeath.z = -123;
 		c_obstacles[6].color = { .24f, .70f, .44f };
 	} else if (body1 == checkpoints[1] && body2 == App->player->vehiclepoint) {
+		if (ondeath.z != -60)
+			App->audio->PlayFx(cpfx);
 		ondeath.y = 25;
 		ondeath.z = -60;
 		c_obstacles[11].color = { .24f, .70f, .44f };
