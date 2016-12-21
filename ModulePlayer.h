@@ -30,4 +30,8 @@ public:
 
 	Timer time;
 	uint deaths;
+
+	uint startmotor;
+	uint gas;
+
 };

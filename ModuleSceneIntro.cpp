@@ -116,7 +116,8 @@ bool ModuleSceneIntro::Start()
 	checkpoints[1]->collision_listeners.add(this);
 
 
-
+	music = App->audio->LoadFx("Music/bgmusic.ogg");
+	App->audio->PlayFx(music, -1);
 	return ret;
 }
 
@@ -161,6 +162,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	c_obstacles[8].Render();
 	c_obstacles[9].Render();
 
+	if (music_playing == false) {
+		
+		music_playing = true;
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -172,6 +178,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
 		App->player->vehiclepoint->GetBody()->setLinearVelocity(btVector3(0, 0, 0));
 		App->player->deaths++;
+		App->audio->PlayFx(App->player->startmotor);
 	}
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 15;

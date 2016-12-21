@@ -5,6 +5,7 @@
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
 #include "Timer.h"
+#include "ModuleAudio.h"
 
 
 
@@ -22,6 +23,12 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	VehicleInfo car;
+
+	//FX ------------
+	startmotor = App->audio->LoadFx("FX/StartMotor.wav");
+	gas = App->audio->LoadFx("FX/Gas.wav");
+	App->audio->PlayFx(startmotor);
+
 
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(1, 1, 3);
@@ -118,6 +125,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		acceleration = MAX_ACCELERATION;
 	}
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN) App->audio->PlayFx(gas);
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 	{

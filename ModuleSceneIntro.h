@@ -48,4 +48,7 @@ public:
 
 	MBlock block[2];
 
+	uint music;
+	bool music_playing;
+
 };

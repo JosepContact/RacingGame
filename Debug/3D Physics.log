@@ -1,4 +1,4 @@
-﻿Build started 21/12/2016 13:02:15.
+﻿Build started 21/12/2016 13:39:41.
      1>Project "D:\CITM\DDVII\Physics II\Race Sec\3D Physics.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\VisualStudio2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D _MBCS /Gm /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleSceneIntro.cpp
@@ -29,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.06
+Time Elapsed 00:00:01.05
