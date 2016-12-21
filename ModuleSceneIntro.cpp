@@ -95,6 +95,19 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[15].SetPos(0, 5, 4);
 	c_obstacles[15].color = Green;
 
+	c_obstacles[16].size = 6;
+	c_obstacles[16].SetPos(0, 8, 33);
+	c_obstacles[16].color = { .63f, 0, .33f };
+
+	c_obstacles[17].size = 7;
+	c_obstacles[17].SetPos(0, 8, 42);
+	c_obstacles[17].color = Blue;
+
+	
+	c_obstacles[18].size = 12;
+	c_obstacles[18].SetPos(0, 8, 52);
+	c_obstacles[18].color = { .63f, 0, .33f };
+
 
 	block[0].body = App->physics->AddBody(c_obstacles[8], 0);
 	block[0].LSpeed = { 0, 0.05f, 0 };
@@ -104,9 +117,17 @@ bool ModuleSceneIntro::Start()
 	block[1].LSpeed = { 0, 0.05f, 0 };
 	block[1].id = 9;
 
+	block[2].body = App->physics->AddBody(c_obstacles[16], 0);
+	block[2].LSpeed = { 0, 0.00f, 0.16f };
+	block[2].id = 16;
+
+	block[3].body = App->physics->AddBody(c_obstacles[18], 0);
+	block[3].LSpeed = { 0, 1.0f, 0.00f };
+	block[3].id = 18;
+
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
-		if(c != block[0].id && c != block[1].id )
+		if (c != block[0].id && c != block[1].id && c != block[2].id && c!= block[3].id)
 			if(c == 14)
 			body = App->physics->AddBody(c_obstacles[c], 200);
 			else
@@ -140,10 +161,16 @@ bool ModuleSceneIntro::Start()
 	checkpoints[0]->collision_listeners.add(this);
 	
 	Cube check2(3, 10, 0.1);
-	check1.SetPos(0, 25, -60);
-	checkpoints[1] = App->physics->AddBody(check1, 0);
+	check2.SetPos(0, 25, -60);
+	checkpoints[1] = App->physics->AddBody(check2, 0);
 	checkpoints[1]->SetAsSensor(true);
 	checkpoints[1]->collision_listeners.add(this);
+
+	Cube check3(3, 10, 0.1);
+	check3.SetPos(0, 12, 42);
+	checkpoints[2] = App->physics->AddBody(check3, 0);
+	checkpoints[2]->SetAsSensor(true);
+	checkpoints[2]->collision_listeners.add(this);
 
 	// FX -------------
 	music = App->audio->LoadFx("Music/bgmusic.ogg");
@@ -178,6 +205,9 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	c_obstacles[8].SetPos(block[0].body->GetBody()->getCenterOfMassPosition().x(), block[0].body->GetBody()->getCenterOfMassPosition().y(), block[0].body->GetBody()->getCenterOfMassPosition().z());
 	c_obstacles[9].SetPos(block[1].body->GetBody()->getCenterOfMassPosition().x(), block[1].body->GetBody()->getCenterOfMassPosition().y(), block[1].body->GetBody()->getCenterOfMassPosition().z());
+	c_obstacles[16].SetPos(block[2].body->GetBody()->getCenterOfMassPosition().x(), block[2].body->GetBody()->getCenterOfMassPosition().y(), block[2].body->GetBody()->getCenterOfMassPosition().z());
+	c_obstacles[18].SetPos(block[3].body->GetBody()->getCenterOfMassPosition().x(), block[3].body->GetBody()->getCenterOfMassPosition().y(), block[3].body->GetBody()->getCenterOfMassPosition().z());
+
 
 	if (block[0].body->GetBody()->getCenterOfMassPosition().y() > 15)
 		block[0].backwards = true;
@@ -189,13 +219,25 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (block[1].body->GetBody()->getCenterOfMassPosition().y() < 9)
 		block[1].backwards = false;
 
+	if (block[2].body->GetBody()->getCenterOfMassPosition().z() > 33)
+		block[2].backwards = true;
+	if (block[2].body->GetBody()->getCenterOfMassPosition().z() < 16)
+		block[2].backwards = false;
 
+	if (block[3].body->GetBody()->getCenterOfMassPosition().y() > 60)
+		block[3].backwards = true;
+	if (block[3].body->GetBody()->getCenterOfMassPosition().y() < 9)
+		block[3].backwards = false;
 
 	block[0].Move();
 	block[1].Move();
+	block[2].Move();
+	block[3].Move();
 
 	c_obstacles[8].Render();
 	c_obstacles[9].Render();
+	c_obstacles[16].Render();
+	c_obstacles[18].Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -203,10 +245,6 @@ update_status ModuleSceneIntro::Update(float dt)
 void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 {
 	if (body1 == sensor_fail && body2 == App->player->vehiclepoint) {
-		float trans[16];
-		App->player->vehiclepoint->GetTransform(trans);
-		trans[8] = trans[9] = trans[10] = 0;
-		App->player->vehiclepoint->SetTransform(trans);
 		App->player->vehiclepoint->SetPos(ondeath.x, ondeath.y, ondeath.z);
 		App->player->vehiclepoint->GetBody()->setLinearFactor(btVector3(0, 1, 1));
 		App->player->vehiclepoint->GetBody()->setAngularFactor(btVector3(1, 0, 0));
@@ -227,6 +265,14 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 		ondeath.z = -60;
 		c_obstacles[11].color = { .24f, .70f, .44f };
 	}
+ else if (body1 == checkpoints[2] && body2 == App->player->vehiclepoint) {
+	 if (ondeath.z != 42)
+		 App->audio->PlayFx(cpfx);
+	 ondeath.y = 12;
+	 ondeath.z = 42;
+
+	 c_obstacles[17].color = { .24f, .70f, .44f };
+ }
 }
 
 void MBlock::Move() {

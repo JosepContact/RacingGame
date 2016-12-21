@@ -20,8 +20,6 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-private:
-	bool debug = false;
 public:
 	PhysVehicle3D* vehicle;
 	PhysBody3D* MotoJoint;
