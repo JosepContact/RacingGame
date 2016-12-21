@@ -68,7 +68,7 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[8].color = { .63f, 0, .33f };
 
 	c_obstacles[9].size = 10;
-	c_obstacles[9].SetPos(0, 16, -98);
+	c_obstacles[9].SetPos(0, 16, -100);
 	c_obstacles[9].color = { .63f, 0, .33f };
 
 	c_obstacles[10].size = 15;
@@ -79,22 +79,47 @@ bool ModuleSceneIntro::Start()
 	c_obstacles[11].SetPos(0, 20, -60);
 	c_obstacles[11].color = Blue;
 
+	c_obstacles[12].size = 40;
+	c_obstacles[12].SetPos(0, 0, -35);
+	c_obstacles[12].color = { 0.76f, 0.20f, 0.25f };
+
+	c_obstacles[13].size = 3;
+	c_obstacles[13].SetPos(0, 35, -20);
+	c_obstacles[13].color = Red;
+
+	c_obstacles[14].size = 3;
+	c_obstacles[14].SetPos(0, 30, -20);
+	c_obstacles[14].color = Red;
+
 
 	block[0].body = App->physics->AddBody(c_obstacles[8], 0);
-	block[0].LSpeed = { 0, 0.1f, 0 };
+	block[0].LSpeed = { 0, 0.05f, 0 };
 	block[0].id = 8;
 
 	block[1].body = App->physics->AddBody(c_obstacles[9], 0);
-	block[1].LSpeed = { 0, 0.1f, 0 };
+	block[1].LSpeed = { 0, 0.05f, 0 };
 	block[1].id = 9;
 
 	for (uint c = 0; c < c_obstacles.Count(); ++c) {
 		PhysBody3D* body;
 		if(c != block[0].id && c != block[1].id )
-			body = App->physics->AddBody(c_obstacles[c], 0);
+			if(c == 14)
+			body = App->physics->AddBody(c_obstacles[c], 1);
+			else
+		body = App->physics->AddBody(c_obstacles[c], 0);
 		obstacles.PushBack(body);
 	}
 
+	vec3 AnchorA;
+	vec3 AnchorB;
+
+	AnchorA.x = obstacles[14]->GetBody()->getCenterOfMassPosition().x() - obstacles[13]->GetBody()->getCenterOfMassPosition().x();
+	AnchorA.y = obstacles[14]->GetBody()->getCenterOfMassPosition().y() - obstacles[13]->GetBody()->getCenterOfMassPosition().y();
+	AnchorA.z = obstacles[14]->GetBody()->getCenterOfMassPosition().z() - obstacles[13]->GetBody()->getCenterOfMassPosition().z();
+	
+	AnchorB = AnchorA;
+
+	App->physics->AddConstraintP2P(*obstacles[13], *obstacles[14], AnchorA, AnchorB);
 
 	Cube p(5, 1, 1000);
 	p.SetPos(0, 8, 0);
@@ -183,9 +208,11 @@ void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
 	if (body1 == checkpoints[0] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 15;
 		ondeath.z = -123;
+		c_obstacles[6].color = Green;
 	} else if (body1 == checkpoints[1] && body2 == App->player->vehiclepoint) {
 		ondeath.y = 25;
 		ondeath.z = -60;
+		c_obstacles[11].color = Green;
 	}
 }
 
@@ -193,9 +220,11 @@ void MBlock::Move() {
 	float trans[16];
 	body->GetTransform(trans);
 
-	if (backwards == false)
+	if (backwards == false) {
 		body->SetPos(trans[12] + LSpeed.x, trans[13] + LSpeed.y, trans[14] + LSpeed.z);
-	else
+	}
+	else {
 		body->SetPos(trans[12] - LSpeed.x, trans[13] - LSpeed.y, trans[14] - LSpeed.z);
+	}
 
 }
